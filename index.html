@@ -1,11 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | Wellframe — Personal Health &amp; Wellness</title>
+  <meta name="description" content="Your personal health and wellness dashboard — track activity, hydration, sleep and more.">
+
+  <!-- Fonts: Fraunces (display), Inter (body/UI), JetBrains Mono (data/metrics) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="Css/style.css">
 </head>
 <body>
-    
+
+  <!-- ============ MOBILE TOP BAR ============ -->
+  <header class="mobile-topbar">
+    <button type="button" class="icon-btn" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+    <div class="mobile-topbar__brand">
+      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+      <span class="brand-name">Wellframe</span>
+    </div>
+    <div class="mobile-topbar__spacer" aria-hidden="true"></div>
+  </header>
+
+  <!-- ============ SIDEBAR NAVIGATION ============ -->
+  <aside class="sidebar" id="sidebar" data-collapsed="false">
+    <div class="sidebar__header">
+      <a href="index.html" class="brand" aria-label="Wellframe home">
+        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="brand-name">Wellframe</span>
+      </a>
+      <button type="button" class="icon-btn sidebar__collapse-btn" id="sidebarToggle" aria-label="Collapse navigation sidebar" aria-expanded="true" aria-controls="sidebar">
+        <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link is-active" aria-current="page" data-tooltip="Home">
+            <span class="nav-link__icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Pages/health-tracker.html" class="nav-link" data-tooltip="Health Tracker">
+            <span class="nav-link__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health Tracker</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Pages/wellness-check.html" class="nav-link" data-tooltip="Health &amp; Wellness Check">
+            <span class="nav-link__icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health &amp; Wellness Check</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Pages/health-care.html" class="nav-link" data-tooltip="Health Care">
+            <span class="nav-link__icon"><i class="fa-solid fa-briefcase-medical" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health Care</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="Pages/profile.html" class="nav-link" data-tooltip="My Profile">
+            <span class="nav-link__icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+            <span class="nav-link__label">My Profile</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <a href="Pages/profile.html" class="sidebar__user" data-tooltip="My Profile">
+        <span class="avatar avatar--sm" aria-hidden="true">RM</span>
+        <span class="sidebar__user-meta">
+          <span class="sidebar__user-name">Riya Mehta</span>
+          <span class="sidebar__user-plan">Personal Plan</span>
+        </span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Overlay for mobile drawer -->
+  <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="app-shell">
+    <main class="dashboard" id="main-content">
+
+      <!-- A. Header / Welcome Section -->
+      <section class="page-header" aria-label="Welcome">
+        <div class="page-header__text">
+          <p class="eyebrow" id="greetingEyebrow">Good Morning</p>
+          <h1 class="page-title" id="greetingTitle">Good Morning, Riya</h1>
+          <p class="page-subtitle">Here&rsquo;s your health and wellness overview for today.</p>
+        </div>
+
+        <div class="page-header__actions">
+          <time class="date-pill" id="currentDate" datetime="">Loading date…</time>
+
+          <button type="button" class="icon-btn icon-btn--surface" aria-label="View notifications">
+            <i class="fa-regular fa-bell" aria-hidden="true"></i>
+            <span class="notif-dot" aria-hidden="true"></span>
+          </button>
+
+          <a href="Pages/profile.html" class="avatar avatar--md" aria-label="Go to my profile">RM</a>
+        </div>
+      </section>
+
+      <!-- B. Health Overview -->
+      <section class="dashboard-section" aria-labelledby="overviewHeading">
+        <div class="section-heading">
+          <h2 id="overviewHeading">Today&rsquo;s Health Overview</h2>
+          <p class="section-heading__sub">A snapshot of your key vitals right now</p>
+        </div>
+
+        <div class="card-grid card-grid--metrics" data-metrics-grid>
+
+          <article class="metric-card" data-metric="steps">
+            <div class="metric-card__top">
+              <span class="metric-card__icon metric-card__icon--primary"><i class="fa-solid fa-shoe-prints" aria-hidden="true"></i></span>
+              <span class="metric-card__label">Steps</span>
+            </div>
+            <p class="metric-card__value">
+              <span class="metric-card__number" data-value="6842">6,842</span>
+              <span class="metric-card__unit">/ 10,000</span>
+            </p>
+            <div class="progress-track" role="progressbar" aria-label="Steps progress" aria-valuemin="0" aria-valuemax="10000" aria-valuenow="6842">
+              <div class="progress-fill" style="width:68%;"></div>
+            </div>
+            <p class="metric-card__foot">68% of daily goal</p>
+          </article>
+
+          <article class="metric-card" data-metric="water">
+            <div class="metric-card__top">
+              <span class="metric-card__icon metric-card__icon--info"><i class="fa-solid fa-droplet" aria-hidden="true"></i></span>
+              <span class="metric-card__label">Water</span>
+            </div>
+            <p class="metric-card__value">
+              <span class="metric-card__number" data-value="1.8">1.8 L</span>
+              <span class="metric-card__unit">/ 2.5 L</span>
+            </p>
+            <div class="progress-track" role="progressbar" aria-label="Water intake progress" aria-valuemin="0" aria-valuemax="25" aria-valuenow="18">
+              <div class="progress-fill progress-fill--info" style="width:72%;"></div>
+            </div>
+            <p class="metric-card__foot">72% of daily goal</p>
+          </article>
+
+          <article class="metric-card" data-metric="sleep">
+            <div class="metric-card__top">
+              <span class="metric-card__icon metric-card__icon--accent"><i class="fa-solid fa-moon" aria-hidden="true"></i></span>
+              <span class="metric-card__label">Sleep</span>
+            </div>
+            <p class="metric-card__value">
+              <span class="metric-card__number" data-value="7.33">7h 20m</span>
+            </p>
+            <span class="status-chip status-chip--warning">Slightly below goal</span>
+            <p class="metric-card__foot">Goal: 8h 00m</p>
+          </article>
+
+          <article class="metric-card" data-metric="exercise">
+            <div class="metric-card__top">
+              <span class="metric-card__icon metric-card__icon--success"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i></span>
+              <span class="metric-card__label">Exercise</span>
+            </div>
+            <p class="metric-card__value">
+              <span class="metric-card__number" data-value="42">42 min</span>
+              <span class="metric-card__unit">/ 60 min</span>
+            </p>
+            <div class="progress-track" role="progressbar" aria-label="Exercise progress" aria-valuemin="0" aria-valuemax="60" aria-valuenow="42">
+              <div class="progress-fill progress-fill--success" style="width:70%;"></div>
+            </div>
+            <p class="metric-card__foot">70% of daily goal</p>
+          </article>
+
+          <article class="metric-card" data-metric="heart-rate">
+            <div class="metric-card__top">
+              <span class="metric-card__icon metric-card__icon--danger"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></span>
+              <span class="metric-card__label">Heart Rate</span>
+            </div>
+            <p class="metric-card__value">
+              <span class="metric-card__number" data-value="72">72</span>
+              <span class="metric-card__unit">BPM</span>
+            </p>
+            <span class="status-chip status-chip--success">Resting &middot; Normal range</span>
+            <p class="metric-card__foot metric-card__foot--muted">Sample value &middot; last synced 9:42 AM</p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- C. Today's Wellness + Summary -->
+      <section class="dashboard-section" aria-labelledby="wellnessHeading">
+        <div class="section-heading">
+          <h2 id="wellnessHeading">Today&rsquo;s Wellness</h2>
+          <p class="section-heading__sub">How your day is trending across the four pillars</p>
+        </div>
+
+        <div class="wellness-layout">
+
+          <!-- Signature element: Daily Rhythm Ring -->
+          <article class="rhythm-card">
+            <div class="rhythm-ring" role="img" aria-label="Overall wellness score: 78 percent">
+              <svg class="rhythm-ring__svg" viewBox="0 0 200 200" aria-hidden="true">
+                <circle class="rhythm-ring__track" cx="100" cy="100" r="86"></circle>
+                <circle class="rhythm-ring__tick-ring" cx="100" cy="100" r="94"></circle>
+                <circle class="rhythm-ring__progress" cx="100" cy="100" r="86" data-ring-progress="78"></circle>
+              </svg>
+              <div class="rhythm-ring__center">
+                <span class="rhythm-ring__value">78<span class="rhythm-ring__percent">%</span></span>
+                <span class="rhythm-ring__label">Overall Wellness</span>
+              </div>
+            </div>
+            <p class="rhythm-card__caption">Your daily rhythm, at a glance — hours logged from midnight to now.</p>
+          </article>
+
+          <div class="wellness-bars">
+            <div class="wellness-bar-item">
+              <div class="wellness-bar-item__head">
+                <span><i class="fa-solid fa-person-walking" aria-hidden="true"></i> Physical Activity</span>
+                <span class="wellness-bar-item__pct">70%</span>
+              </div>
+              <div class="progress-track progress-track--sm" role="progressbar" aria-label="Physical activity" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+                <div class="progress-fill progress-fill--success" style="width:70%;"></div>
+              </div>
+            </div>
+
+            <div class="wellness-bar-item">
+              <div class="wellness-bar-item__head">
+                <span><i class="fa-solid fa-droplet" aria-hidden="true"></i> Hydration</span>
+                <span class="wellness-bar-item__pct">72%</span>
+              </div>
+              <div class="progress-track progress-track--sm" role="progressbar" aria-label="Hydration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72">
+                <div class="progress-fill progress-fill--info" style="width:72%;"></div>
+              </div>
+            </div>
+
+            <div class="wellness-bar-item">
+              <div class="wellness-bar-item__head">
+                <span><i class="fa-solid fa-moon" aria-hidden="true"></i> Sleep</span>
+                <span class="wellness-bar-item__pct">61%</span>
+              </div>
+              <div class="progress-track progress-track--sm" role="progressbar" aria-label="Sleep" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61">
+                <div class="progress-fill progress-fill--warning" style="width:61%;"></div>
+              </div>
+            </div>
+
+            <div class="wellness-bar-item">
+              <div class="wellness-bar-item__head">
+                <span><i class="fa-solid fa-apple-whole" aria-hidden="true"></i> Nutrition</span>
+                <span class="wellness-bar-item__pct">85%</span>
+              </div>
+              <div class="progress-track progress-track--sm" role="progressbar" aria-label="Nutrition" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85">
+                <div class="progress-fill progress-fill--success" style="width:85%;"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Wellness Summary + Health Tip -->
+      <section class="dashboard-section">
+        <div class="card-grid card-grid--two">
+
+          <article class="summary-card">
+            <p class="summary-card__eyebrow">Personal Wellness Summary</p>
+            <p class="summary-card__text">You&rsquo;re doing well today. Your activity and hydration are on track, while your sleep goal could use some attention.</p>
+            <p class="summary-card__disclaimer"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> This is a general wellness summary, not a medical diagnosis.</p>
+          </article>
+
+          <article class="tip-card">
+            <span class="tip-card__icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></span>
+            <div>
+              <p class="tip-card__eyebrow">Daily Health Tip</p>
+              <p class="tip-card__text">Stay hydrated throughout the day and try to maintain a consistent sleep schedule.</p>
+              <p class="tip-card__disclaimer">General wellness information — not medical advice.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- D. Quick Actions -->
+      <section class="dashboard-section" aria-labelledby="quickActionsHeading">
+        <div class="section-heading">
+          <h2 id="quickActionsHeading">Quick Actions</h2>
+        </div>
+
+        <div class="card-grid card-grid--actions">
+          <a href="Pages/health-tracker.html" class="action-card">
+            <span class="action-card__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+            <span class="action-card__label">Update Health Tracker</span>
+            <i class="fa-solid fa-arrow-right action-card__arrow" aria-hidden="true"></i>
+          </a>
+          <a href="Pages/wellness-check.html" class="action-card">
+            <span class="action-card__icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+            <span class="action-card__label">Take Wellness Check</span>
+            <i class="fa-solid fa-arrow-right action-card__arrow" aria-hidden="true"></i>
+          </a>
+          <a href="Pages/health-care.html" class="action-card">
+            <span class="action-card__icon"><i class="fa-solid fa-briefcase-medical" aria-hidden="true"></i></span>
+            <span class="action-card__label">View Health Care</span>
+            <i class="fa-solid fa-arrow-right action-card__arrow" aria-hidden="true"></i>
+          </a>
+          <a href="Pages/profile.html" class="action-card">
+            <span class="action-card__icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+            <span class="action-card__label">Update Profile</span>
+            <i class="fa-solid fa-arrow-right action-card__arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- E. Recent Activity -->
+      <section class="dashboard-section" aria-labelledby="activityHeading">
+        <div class="section-heading">
+          <h2 id="activityHeading">Recent Activity</h2>
+          <p class="section-heading__sub">A log of what you&rsquo;ve completed today</p>
+        </div>
+
+        <ul class="activity-list">
+          <li class="activity-item">
+            <span class="activity-item__icon activity-item__icon--success"><i class="fa-solid fa-person-walking" aria-hidden="true"></i></span>
+            <span class="activity-item__body">
+              <span class="activity-item__title">Completed 30-minute walk</span>
+              <span class="activity-item__time">Today &middot; 8:05 AM</span>
+            </span>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__icon activity-item__icon--info"><i class="fa-solid fa-droplet" aria-hidden="true"></i></span>
+            <span class="activity-item__body">
+              <span class="activity-item__title">Drank 500 ml water</span>
+              <span class="activity-item__time">Today &middot; 9:30 AM</span>
+            </span>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__icon activity-item__icon--accent"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i></span>
+            <span class="activity-item__body">
+              <span class="activity-item__title">Completed morning exercise</span>
+              <span class="activity-item__time">Today &middot; 6:45 AM</span>
+            </span>
+          </li>
+          <li class="activity-item">
+            <span class="activity-item__icon activity-item__icon--muted"><i class="fa-solid fa-moon" aria-hidden="true"></i></span>
+            <span class="activity-item__body">
+              <span class="activity-item__title">Logged 7h 20m sleep</span>
+              <span class="activity-item__time">Today &middot; 6:30 AM</span>
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="site-footer__top">
+          <div class="site-footer__brand">
+            <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+            <span class="brand-name">Wellframe</span>
+          </div>
+          <p class="site-footer__tagline">A personal health &amp; wellness dashboard.</p>
+        </div>
+
+        <div class="site-footer__meta">
+          <p>Developer: Your Name / Development Team</p>
+          <p>Email: <a href="mailto:developer@example.com">developer@example.com</a></p>
+          <p><a href="#" aria-disabled="true">GitHub / Project Repository</a></p>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>&copy; <span id="footerYear">2026</span> Wellframe. All rights reserved.</p>
+          <p class="site-footer__disclaimer">This website provides general wellness information and is not a substitute for professional medical advice.</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="Script/script.js" defer></script>
 </body>
 </html>
