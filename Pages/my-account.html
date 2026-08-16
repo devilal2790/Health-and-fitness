@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | Wellframe</title>
+  <meta name="description" content="Manage your Wellframe account.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../Css/style.css">
+  <link rel="stylesheet" href="../Css/my-account.css">
+</head>
+<body>
+
+<header class="mobile-topbar">
+  <button type="button" class="icon-btn" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  </button>
+  <div class="mobile-topbar__brand">
+    <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+    <span class="brand-name">Wellframe</span>
+  </div>
+  <div class="mobile-topbar__spacer" aria-hidden="true"></div>
+</header>
+
+<aside class="sidebar" id="sidebar" data-collapsed="false">
+  <div class="sidebar__header">
+    <a href="../index.html" class="brand" aria-label="Wellframe home">
+      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+      <span class="brand-name">Wellframe</span>
+    </a>
+    <button type="button" class="icon-btn sidebar__collapse-btn" id="sidebarToggle" aria-label="Collapse navigation sidebar" aria-expanded="true" aria-controls="sidebar">
+      <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <nav class="sidebar__nav" aria-label="Primary navigation">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="../index.html" class="nav-link" data-tooltip="Home">
+          <span class="nav-link__icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+          <span class="nav-link__label">Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="health-tracker.html" class="nav-link" data-tooltip="Health Tracker">
+          <span class="nav-link__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+          <span class="nav-link__label">Health Tracker</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="wellness-check.html" class="nav-link" data-tooltip="Health &amp; Wellness Check">
+          <span class="nav-link__icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+          <span class="nav-link__label">Health &amp; Wellness Check</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="health-care.html" class="nav-link" data-tooltip="Health Care">
+          <span class="nav-link__icon"><i class="fa-solid fa-briefcase-medical" aria-hidden="true"></i></span>
+          <span class="nav-link__label">Health Care</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="profile.html" class="nav-link" data-tooltip="My Profile">
+          <span class="nav-link__icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+          <span class="nav-link__label">My Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="my-account.html" class="nav-link is-active" aria-current="page" data-tooltip="My Account">
+          <span class="nav-link__icon"><i class="fa-solid fa-user-gear" aria-hidden="true"></i></span>
+          <span class="nav-link__label">My Account</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar__footer">
+    <a href="profile.html" class="sidebar__user" data-tooltip="My Profile">
+      <span class="avatar avatar--sm">RM</span>
+      <span class="sidebar__user-meta">
+        <span class="sidebar__user-name">Riya Mehta</span>
+        <span class="sidebar__user-plan">Personal Plan</span>
+      </span>
+    </a>
+  </div>
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+<div class="app-shell">
+  <main class="dashboard" id="main-content">
+
+    <section class="page-header">
+      <div class="page-header__text">
+        <p class="eyebrow">Account</p>
+        <h1 class="page-title">My Account</h1>
+        <p class="page-subtitle">Manage your Wellframe profile and account details.</p>
+      </div>
+      <div class="page-header__actions">
+        <a href="../index.html" class="icon-btn icon-btn--surface" aria-label="Go to home">
+          <i class="fa-solid fa-house"></i>
+        </a>
+      </div>
+    </section>
+
+    <section id="authView" class="account-section">
+      <div class="account-auth-grid">
+        <article class="account-card account-card--intro">
+          <span class="account-icon"><i class="fa-solid fa-user-shield"></i></span>
+          <p class="eyebrow">Private account</p>
+          <h2>Welcome back</h2>
+          <p>Sign in to manage your profile and keep your account information in one place.</p>
+          <ul class="account-benefits">
+            <li><i class="fa-solid fa-check"></i> Simple account management</li>
+            <li><i class="fa-solid fa-check"></i> Profile information at a glance</li>
+            <li><i class="fa-solid fa-check"></i> Works with the existing Wellframe design</li>
+          </ul>
+        </article>
+
+        <article class="account-card account-card--form">
+          <div class="account-tabs">
+            <button class="account-tab is-active" type="button" data-auth-tab="login">Login</button>
+            <button class="account-tab" type="button" data-auth-tab="register">Create Account</button>
+          </div>
+
+          <form id="loginForm" class="account-form" novalidate>
+            <div class="form-heading">
+              <h2>Login</h2>
+              <p>Enter your account details to continue.</p>
+            </div>
+
+            <label class="form-field">
+              <span>Username</span>
+              <input id="loginUsername" name="username" type="text" autocomplete="username" required>
+              <small class="field-error" data-error-for="loginUsername"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Password</span>
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+              <small class="field-error" data-error-for="loginPassword"></small>
+            </label>
+
+            <p class="form-message" id="loginMessage" role="alert"></p>
+            <button class="btn btn-primary account-submit" type="submit">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+          </form>
+
+          <form id="registerForm" class="account-form" hidden novalidate>
+            <div class="form-heading">
+              <h2>Create Account</h2>
+              <p>Set up your Wellframe account.</p>
+            </div>
+
+            <label class="form-field">
+              <span>Full Name</span>
+              <input id="registerName" name="name" type="text" autocomplete="name" required>
+              <small class="field-error" data-error-for="registerName"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Gmail</span>
+              <input id="registerEmail" name="email" type="email" autocomplete="email" placeholder="name@gmail.com" required>
+              <small class="field-error" data-error-for="registerEmail"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Age</span>
+              <input id="registerAge" name="age" type="number" min="1" max="120" required>
+              <small class="field-error" data-error-for="registerAge"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Username</span>
+              <input id="registerUsername" name="username" type="text" autocomplete="username" required>
+              <small class="field-error" data-error-for="registerUsername"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Password</span>
+              <input id="registerPassword" name="password" type="password" autocomplete="new-password" required>
+              <small class="field-error" data-error-for="registerPassword"></small>
+            </label>
+
+            <label class="form-field">
+              <span>Confirm Password</span>
+              <input id="registerConfirm" name="confirmPassword" type="password" autocomplete="new-password" required>
+              <small class="field-error" data-error-for="registerConfirm"></small>
+            </label>
+
+            <p class="form-message" id="registerMessage" role="alert"></p>
+            <button class="btn btn-primary account-submit" type="submit">
+              <i class="fa-solid fa-user-plus"></i> Create Account
+            </button>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="account-section" hidden>
+      <div class="account-profile-head">
+        <div class="account-avatar" id="profileInitials">RM</div>
+        <div>
+          <p class="eyebrow">Signed in</p>
+          <h2 id="profileName">Riya Mehta</h2>
+          <p class="text-muted">Your personal account dashboard</p>
+        </div>
+      </div>
+
+      <div class="account-info-grid">
+        <article class="account-info-card">
+          <span class="account-info-icon"><i class="fa-solid fa-user"></i></span>
+          <div><span class="account-label">Full Name</span><strong id="profileFullName"></strong></div>
+        </article>
+        <article class="account-info-card">
+          <span class="account-info-icon"><i class="fa-solid fa-envelope"></i></span>
+          <div><span class="account-label">Gmail</span><strong id="profileEmail"></strong></div>
+        </article>
+        <article class="account-info-card">
+          <span class="account-info-icon"><i class="fa-solid fa-cake-candles"></i></span>
+          <div><span class="account-label">Age</span><strong id="profileAge"></strong></div>
+        </article>
+        <article class="account-info-card">
+          <span class="account-info-icon"><i class="fa-solid fa-at"></i></span>
+          <div><span class="account-label">Username</span><strong id="profileUsername"></strong></div>
+        </article>
+      </div>
+
+      <div class="account-actions">
+        <button class="btn btn-primary" id="settingsButton" type="button">
+          <i class="fa-solid fa-gear"></i> Account Settings
+        </button>
+        <button class="btn btn-secondary" id="logoutButton" type="button">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+
+      <article id="settingsCard" class="account-card settings-card" hidden>
+        <div class="form-heading">
+          <p class="eyebrow">Profile settings</p>
+          <h2>Edit Account</h2>
+        </div>
+
+        <form id="settingsForm" class="settings-form" novalidate>
+          <label class="form-field">
+            <span>Full Name</span>
+            <input id="settingsName" type="text" required>
+            <small class="field-error" data-error-for="settingsName"></small>
+          </label>
+
+          <label class="form-field">
+            <span>Gmail</span>
+            <input id="settingsEmail" type="email" required>
+            <small class="field-error" data-error-for="settingsEmail"></small>
+          </label>
+
+          <label class="form-field">
+            <span>Age</span>
+            <input id="settingsAge" type="number" min="1" max="120" required>
+            <small class="field-error" data-error-for="settingsAge"></small>
+          </label>
+
+          <label class="form-field">
+            <span>Username</span>
+            <input id="settingsUsername" type="text" required>
+            <small class="field-error" data-error-for="settingsUsername"></small>
+          </label>
+
+          <p class="form-message" id="settingsMessage" role="alert"></p>
+
+          <div class="settings-actions">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+            <button class="btn btn-secondary" id="cancelSettings" type="button">Cancel</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <span class="brand-mark"><i class="fa-solid fa-heart-pulse"></i></span>
+          <span class="brand-name">Wellframe</span>
+        </div>
+        <p class="site-footer__tagline">A personal health &amp; wellness dashboard.</p>
+      </div>
+      <div class="site-footer__bottom">
+        <p>&copy; <span id="footerYear">2026</span> Wellframe. All rights reserved.</p>
+        <p class="site-footer__disclaimer">General wellness information — not medical advice.</p>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<script src="../Script/script.js" defer></script>
+<script src="../Script/my-account.js" defer></script>
+</body>
+</html>
