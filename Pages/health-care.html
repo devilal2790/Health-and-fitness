@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Care | Wellframe — Personal Health &amp; Wellness</title>
+  <meta name="description" content="Find healthcare professionals based on your health concern.">
+
+  <!-- Fonts: Fraunces (display), Inter (body/UI), JetBrains Mono (data/metrics) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Common global stylesheet first, then page-specific styles -->
+  <link rel="stylesheet" href="../Css/style.css">
+  <link rel="stylesheet" href="../Css/healthcare.css">
+</head>
+<body>
+
+  <!-- ============ MOBILE TOP BAR ============ -->
+  <header class="mobile-topbar">
+    <button type="button" class="icon-btn" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+    <div class="mobile-topbar__brand">
+      <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+      <span class="brand-name">Wellframe</span>
+    </div>
+    <div class="mobile-topbar__spacer" aria-hidden="true"></div>
+  </header>
+
+  <!-- ============ SIDEBAR NAVIGATION (same as index.html) ============ -->
+  <aside class="sidebar" id="sidebar" data-collapsed="false">
+    <div class="sidebar__header">
+      <a href="../index.html" class="brand" aria-label="Wellframe home">
+        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+        <span class="brand-name">Wellframe</span>
+      </a>
+      <button type="button" class="icon-btn sidebar__collapse-btn" id="sidebarToggle" aria-label="Collapse navigation sidebar" aria-expanded="true" aria-controls="sidebar">
+        <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar__nav" aria-label="Primary navigation">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="../index.html" class="nav-link" data-tooltip="Home">
+            <span class="nav-link__icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="health-tracker.html" class="nav-link" data-tooltip="Health Tracker">
+            <span class="nav-link__icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health Tracker</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="wellness-check.html" class="nav-link" data-tooltip="Health &amp; Wellness Check">
+            <span class="nav-link__icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health &amp; Wellness Check</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="health-care.html" class="nav-link is-active" aria-current="page" data-tooltip="Health Care">
+            <span class="nav-link__icon"><i class="fa-solid fa-briefcase-medical" aria-hidden="true"></i></span>
+            <span class="nav-link__label">Health Care</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="profile.html" class="nav-link" data-tooltip="My Profile">
+            <span class="nav-link__icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+            <span class="nav-link__label">My Profile</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <a href="profile.html" class="sidebar__user" data-tooltip="My Profile">
+        <span class="avatar avatar--sm" aria-hidden="true">RM</span>
+        <span class="sidebar__user-meta">
+          <span class="sidebar__user-name">Riya Mehta</span>
+          <span class="sidebar__user-plan">Personal Plan</span>
+        </span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Overlay for mobile drawer -->
+  <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="app-shell">
+    <main class="dashboard" id="main-content">
+
+      <!-- Page Header -->
+      <section class="page-header" aria-label="Health Care">
+        <div class="page-header__text">
+          <p class="eyebrow">Health Care</p>
+          <h1 class="page-title">Health Care</h1>
+          <p class="page-subtitle">Find healthcare professionals based on your health concern.</p>
+          <p class="hc-intro">Select a health concern below to explore healthcare professionals specializing in that field.</p>
+        </div>
+      </section>
+
+      <!-- Healthcare Selection Card -->
+      <section class="dashboard-section" aria-labelledby="selectionHeading">
+        <h2 class="visually-hidden" id="selectionHeading">Select a health problem</h2>
+
+        <div class="hc-search-card">
+          <div class="hc-search-card__field">
+            <label for="healthProblem" class="hc-label">Select Health Problem</label>
+            <select id="healthProblem" class="hc-select" aria-describedby="hcValidationMsg">
+              <option value="" disabled selected>Select a health problem</option>
+              <option value="dental">Dental Problems</option>
+              <option value="eye">Eye Problems</option>
+              <option value="skin">Skin Problems</option>
+              <option value="cardio">Heart &amp; Cardiovascular Problems</option>
+              <option value="ortho">Orthopedic / Bone &amp; Joint Problems</option>
+              <option value="surgery">General Surgery</option>
+              <option value="ent">ENT Problems</option>
+              <option value="neuro">Neurological Problems</option>
+              <option value="gastro">Gastrointestinal / Digestive Problems</option>
+              <option value="mental">Mental Wellness / Psychiatry</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn-primary hc-find-btn" id="findDoctorsBtn">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Find Doctors
+          </button>
+        </div>
+
+        <p class="hc-validation-msg" id="hcValidationMsg" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- Loading state -->
+      <div class="hc-loading" id="hcLoading" hidden aria-live="polite">
+        <span class="hc-loading__spinner" aria-hidden="true"></span>
+        <span>Finding healthcare professionals&hellip;</span>
+      </div>
+
+      <!-- Empty state (shown before a category has been searched) -->
+      <section class="hc-empty-state" id="hcEmptyState" aria-live="polite">
+        <span class="hc-empty-state__icon" aria-hidden="true"><i class="fa-solid fa-user-doctor"></i></span>
+        <h2>Find the right healthcare professional</h2>
+        <p>Select a health concern above to see available healthcare professionals.</p>
+      </section>
+
+      <!-- Doctor Results Section -->
+      <section class="dashboard-section hc-results" id="hcResults" hidden aria-labelledby="resultsHeading">
+
+        <!-- Category Summary -->
+        <div class="hc-category-summary">
+          <span class="hc-category-summary__icon" id="hcCategoryIcon" aria-hidden="true"><i class="fa-solid fa-notes-medical"></i></span>
+          <div>
+            <h2 id="resultsHeading" class="hc-category-summary__title"></h2>
+            <p class="hc-category-summary__desc"></p>
+            <p class="hc-category-summary__count"></p>
+          </div>
+        </div>
+
+        <!-- Controls: search + sort -->
+        <div class="hc-controls">
+          <div class="hc-controls__search">
+            <label for="hcSearchInput" class="visually-hidden">Search doctors by name or hospital</label>
+            <i class="fa-solid fa-magnifying-glass hc-controls__search-icon" aria-hidden="true"></i>
+            <input type="search" id="hcSearchInput" placeholder="Search doctors by name or hospital">
+          </div>
+
+          <div class="hc-controls__sort">
+            <label for="hcSortSelect">Sort by</label>
+            <select id="hcSortSelect">
+              <option value="recommended">Recommended</option>
+              <option value="rating-desc">Rating: High to Low</option>
+              <option value="experience-desc">Experience: High to Low</option>
+              <option value="name-asc">Name: A&ndash;Z</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="hc-result-count" id="hcResultCount" role="status" aria-live="polite"></p>
+
+        <!-- Doctor Grid -->
+        <div class="hc-doctor-grid" id="hcDoctorGrid"></div>
+
+        <p class="hc-no-results" id="hcNoResults" hidden>No doctors found matching your search.</p>
+      </section>
+
+      <!-- Disclaimer -->
+      <section class="hc-disclaimer">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        <div>
+          <p>This website is for general informational purposes only and does not provide medical diagnosis or treatment. Consult a qualified healthcare professional for medical advice.</p>
+          <p>Doctor profiles and contact details shown in this prototype are fictional examples for demonstration purposes.</p>
+        </div>
+      </section>
+
+      <!-- Footer (same as index.html) -->
+      <footer class="site-footer">
+        <div class="site-footer__top">
+          <div class="site-footer__brand">
+            <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-heart-pulse"></i></span>
+            <span class="brand-name">Wellframe</span>
+          </div>
+          <p class="site-footer__tagline">A personal health &amp; wellness dashboard.</p>
+        </div>
+
+        <div class="site-footer__meta">
+          <p>Developer: Your Name / Development Team</p>
+          <p>Email: <a href="mailto:developer@example.com">developer@example.com</a></p>
+          <p><a href="#" aria-disabled="true">GitHub / Project Repository</a></p>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>&copy; <span id="footerYear">2026</span> Wellframe. All rights reserved.</p>
+          <p class="site-footer__disclaimer">This website provides general wellness information and is not a substitute for professional medical advice.</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Contact Doctor Modal -->
+  <div class="hc-modal-overlay" id="hcModalOverlay" hidden>
+    <div class="hc-modal" role="dialog" aria-modal="true" aria-labelledby="hcModalName" id="hcModal">
+      <button type="button" class="icon-btn hc-modal__close" id="hcModalClose" aria-label="Close doctor profile">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+
+      <div class="hc-modal__header">
+        <span class="hc-modal__avatar" id="hcModalAvatar" aria-hidden="true"></span>
+        <div>
+          <h2 class="hc-modal__name" id="hcModalName"></h2>
+          <p class="hc-modal__specialty" id="hcModalSpecialty"></p>
+          <p class="hc-modal__rating" id="hcModalRating"></p>
+        </div>
+      </div>
+
+      <dl class="hc-modal__details">
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Qualification</dt>
+          <dd id="hcModalQualification"></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</dt>
+          <dd id="hcModalExperience"></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-hospital" aria-hidden="true"></i> Hospital</dt>
+          <dd id="hcModalHospital"></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Location</dt>
+          <dd id="hcModalLocation"></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-clock" aria-hidden="true"></i> Availability</dt>
+          <dd id="hcModalAvailability"></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-phone" aria-hidden="true"></i> Phone</dt>
+          <dd><a id="hcModalPhone" href="#"></a></dd>
+        </div>
+        <div class="hc-modal__row">
+          <dt><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</dt>
+          <dd><a id="hcModalEmail" href="#"></a></dd>
+        </div>
+      </dl>
+
+      <p class="hc-modal__disclaimer">This profile is a fictional demo example and not a real healthcare provider.</p>
+    </div>
+  </div>
+
+  <!-- Common script first, then page-specific script -->
+  <script src="../Script/script.js" defer></script>
+  <script src="../Script/healthcare.js" defer></script>
+</body>
+</html>
